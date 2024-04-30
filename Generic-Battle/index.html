@@ -13,7 +13,7 @@
 <button onClick = "upgradeMaxhealth()" id="upgrademaxhealth"> upgrade max health</button>
 <button onClick = "restoreHealth()" id="restorehealth"> restore health</button>
 <button onClick = "upgradeSword()" id="upgradesword"> upgrade sword</button>
-<button onClick = "upgradeAgility()" id="upgradeagility"> upgrade agility (chance of dodging attacks)</button>
+<button onClick = "upgradeAgility()" id="upgradeagility"> upgrade agility</button>
 <p id="thingy2"></p>
 </div>
 <script>
@@ -103,7 +103,7 @@ setTimeout(function(){
         }
 }
 function upgradeMaxhealth() {
-if (souls > 0 && playerhealth > 0) {
+if (souls >= 1 && playerhealth > 0) {
 souls -= 1;
 playermaxhealth += 30;
 playerhealth += 30;
@@ -117,8 +117,8 @@ document.getElementById("upgrademaxhealth").innerHTML = "upgrade max health";
 }
 }
 function restoreHealth() {
-if (souls > 0 && playerhealth > 0) {
-souls -= 1;
+if (souls >= 0.5 && playerhealth > 0) {
+souls -= 0.5;
 playerhealth = playermaxhealth;
  document.getElementById("health").innerHTML = "your health: " + playerhealth + "/" + playermaxhealth + "<br> enemy health: " + enemyhealth + "/" + enemymaxhealth;
  document.getElementById("soulcounter").innerHTML = "souls: " + souls;
@@ -130,7 +130,7 @@ document.getElementById("restorehealth").innerHTML = "restore health";
 }
 }
 function upgradeSword() {
-if (souls > 0 && playerhealth > 0 && 7 > weapon) {
+if (souls >= 1 && playerhealth > 0 && 7 > weapon) {
 souls -= 1;
 playermin += 2;
 playerrang += 2;
@@ -144,14 +144,14 @@ document.getElementById("upgradesword").innerHTML = "upgrade sword";
 }
 }
 function upgradeAgility() {
-if (souls > 0 && playerhealth > 0 && 6 > agility) { 
+if (souls >= 1 && playerhealth > 0 && 6 > agility) { 
 souls -= 1;
-agility++;
+agility += 2;
 document.getElementById("soulcounter").innerHTML = "souls: " + souls;
 } else {
         document.getElementById("upgradeagility").innerHTML = "not enough souls or you are dead or you have the best agility";
 setTimeout(function(){
-document.getElementById("upgradeagility").innerHTML = "upgrade agility (chance of dodging attacks)";
+document.getElementById("upgradeagility").innerHTML = "upgrade agility";
 },1000);
 }
 }
