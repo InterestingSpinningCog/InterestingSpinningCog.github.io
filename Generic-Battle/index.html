@@ -6,13 +6,18 @@
 </head>
 <body>
         <div class="w3-container">
-<p id="health"> your heath: 150/150 <br> enemy health: 100/100
-        <span style="float:right;">
-                stats
-        </span>
+<p id="health">
+     your heath: 150/150 
+    <span id="stats" style="float:right;">
+        strength: 8
+        agility: 1
+        enemy strength: 2
+        enemy agility: 1
+    </span>
+    <br> enemy health: 100/100
 </p>
 <p id="soulcounter"> souls: 0</p>
-<button onClick = "eE()" id="attack"> attack </button>
+<button onClick = "main()" id="attack"> attack </button>
 <br>
 <button onClick = "upgradeMaxhealth()" id="upgrademaxhealth"> upgrade max health</button>
 <button onClick = "restoreHealth()" id="restorehealth"> restore health</button>
@@ -21,8 +26,8 @@
 <p id="thingy2"></p>
 </div>
 <script>
-const swords = ["alluminum sword", "generic sword", "katana", "diamond sword", "netherite sword", "plasma sword", "sword of gryffindor", "gods will"];
-const randomweapons = ["hand", "baseball bat", "frying pan", "lego brick", "your mother", "cheese", "stop sign", "your death certificate"];
+const swords = ["alluminum sword", "generic sword", "katana", "diamond sword", "netherite sword", "plasma sword", "AotE", "sword of gryffindor", "gods will", "carviz hypercharge", "Hyperion"];
+const randomweapons = ["hand", "baseball bat", "frying pan", "lego brick", "your mother", "cheese", "stop sign", "your death certificate", "an IED", "a plane on track to the world trade center", "a dog with rabies", "grass (you're allergic)", "figurative language", "the sun"];
 var text = '';
 var attack = 0;
 var weapon = 0;
@@ -40,7 +45,7 @@ var autoattack = false;
 var agility = 1;
 var enemyagility = 1;
 var misschance = 0;
-    function eE() {
+    function main() {
     if (playerhealth > 0) {
         document.getElementById("attack").disabled = true;
     autoattack = true;
@@ -84,13 +89,14 @@ var misschance = 0;
 setTimeout(function(){
     if (enemyhealth <= 0) { 
             souls++;
-            if (7 > enemyweapon) {
+            
             enemymin++;
             enemyrang++;
-            enemyweapon++;
             enemyagility++;
             enemymaxhealth += 10;
             enemyhealth = enemymaxhealth;
+            if (11 > enemyweapon) {
+            enemyweapon++;
             }
             document.getElementById("soulcounter").innerHTML = "souls: " + souls;
             document.getElementById("health").innerHTML = "your health: " + playerhealth + "/" + playermaxhealth + "<br> enemy health: " + enemyhealth + "/" + enemymaxhealth;
@@ -99,7 +105,7 @@ setTimeout(function(){
             document.getElementById("attack").disabled = false;
             }
     if (autoattack == true) {
-    eE();
+    main();
     }
 },2000);
         } else {
@@ -134,7 +140,7 @@ document.getElementById("restorehealth").innerHTML = "restore health";
 }
 }
 function upgradeSword() {
-if (souls >= 1 && playerhealth > 0 && 7 > weapon) {
+if (souls >= 1 && playerhealth > 0 && 11 > weapon) {
 souls -= 1;
 playermin += 2;
 playerrang += 2;
